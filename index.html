@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Krishna Prasad</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/aos.css" rel="stylesheet">
+    <!-- main style -->
+    <link href="css/style.scss" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/home.background.js"></script>
+    <script type="x-shader/x-vertex" id="vertexshader">
+        attribute float size;
+        attribute vec3 customColor;
+        varying vec3 vColor;
+      
+        void main() {
+      
+          vColor = customColor;
+          vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+          gl_PointSize = size * ( 300.0 / -mvPosition.z );
+          gl_Position = projectionMatrix * mvPosition;
+        }
+    </script>
+    <script type="x-shader/x-fragment" id="fragmentshader">
+        uniform vec3 color;
+        uniform sampler2D pointTexture;
+        
+        varying vec3 vColor;
+        
+        void main() {
+        
+            gl_FragColor = vec4( color * vColor, 1.0 );
+            gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+        
+        }
+    </script>
+
+    <!-- vertex shader -->
+    <script id="vs" type="f">
+        attribute vec2 position;
+        attribute vec2 texcoord;
+    
+        uniform mat3 u_matrix;
+    
+        varying vec2 v_texcoord;
+    
+        void main() {
+        gl_Position = vec4(u_matrix * vec3(position, 1), 1);
+        v_texcoord = texcoord;
+        }
+    </script>
+    
+    <!-- fragment shader -->
+    <script id="fs" type="f">
+        precision mediump float;
+    
+        uniform vec2 u_mouse;
+    
+        uniform sampler2D u_originalImage;
+        uniform sampler2D u_mapImage;
+    
+        varying vec2 v_texcoord;
+    
+        void main() {
+        vec4 depthDistortion = texture2D(u_mapImage, v_texcoord);
+        float parallaxMult = depthDistortion.r;
+    
+        vec2 parallax = (u_mouse) * parallaxMult;
+    
+        vec4 original = texture2D(u_originalImage, (v_texcoord + parallax));
+        gl_FragColor = original;
+        }
+    </script>
+
+</head>
+
+<body>
+        <!-- <canvas id="mouse_trail"></canvas> -->
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">
+
+            <div class="preloader" aria-busy="true" aria-label="Loading, please wait." role="progressbar">
+            </div>
+
+        </div>
+    </div>
+    <!-- ./Preloader -->
+    
+    <!-- header -->
+    <header class="navbar-fixed-top">
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">experience</a></li>
+                <li><a id="projects-nav" href="#projects">portfolio</a></li>
+                <li><a id="contact-nav" href="#contact">contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- ./header -->
+    
+    <!-- home -->
+    <div class="section" id="home" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div id='title_space'>
+                <div id="magic"></div>
+                <div class="title_text">
+                    <h1>professional web developer &bull; aspiring digital product designer<br>
+                        <!-- loves <br>
+                              <span class="words-wrapper">
+                                <b class="is-visible">coffee</b>
+                                <b>programming</b>
+                                <b>astrophysics</b>
+                                <b>blockchain</b>
+                                <b>butter chicken</b>
+                              </span> -->
+                     <h1>
+                  </div>
+                
+            </div>
+            <div class="scrollicon" style="width: 2em; height: 2em; background-color: transparent; z-index: 80; 
+            bottom: 25px; position: absolute; border-width: 0 0.25em 0.25em 0; border-style: solid; border-color: antiquewhite; animation: scrolldown 1.2s ease-in-out infinite 0.15s;">
+            </div>
+            <div class="scrollicon" style="width: 2em; height: 2em; background-color: transparent; z-index: 80; 
+            bottom: 35px; position: absolute; border-width: 0 0.25em 0.25em 0; border-style: solid; border-color: antiquewhite; animation: scrolldown 1.2s ease-in-out infinite 0.15s;">
+            </div>
+
+        </div>
+    </div>
+    <!-- ./home -->
+    
+    <!-- about -->
+    <div class="section" id="about">
+        <div class="container">
+            <div class="col-md-6" data-aos="fade-up">
+                <h4>01</h4>
+                <h1 class="size-50">Hello ! <br /> I'm Krishna</h1>
+                <div class="h-50"></div>
+                <p id="bio"> I am an Indian-based web application developer working as a web back-end engineer building mobile and web applications for an Indonesian-based FinTech product. 
+                    After graduating in Computer Science and Engineering, I gathered diverse experience in web development by working for various small scale firms aiding them to create a web presence for their business needs.
+                    I am passionate about the web, blockchain and extended-reality technologies that rose great aspirations to learn, unlearn and relearn best practices as the industry grows.
+                    My fondness for art, consumer psychology, and analytical correlations build the foundations for a user-centred approach in designing and developing products. 
+                    My future ventures are towards building a career in design management for products in the extended reality space.
+                </p>
+                <div class="h-50"></div> <img src="img/Signature.svg" width="230" alt="" />
+                <div class="h-50"></div>
+            </div>
+            <div class="col-md-6 about-img-div">
+                <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div>
+                <canvas class="img-responsive" width="400" height="400" id="canvas" align="right" data-aos="fade-right" data-aos-delay="0" ></canvas>
+                <!-- <img src="img/about-img.jpg" width="400" class="img-responsive" alt="" align="right" data-aos="fade-right" data-aos-delay="0" /> -->
+            </div>
+        </div>
+    </div>
+    <!-- ./about -->
+    
+    <!-- experience  -->
+    <div class="section" id="experience">
+        
+        <div class="container">
+            <div class="col-md-12">
+                <h4>02</h4>
+                <h1 class="size-50">My <br /> Experience</h1>
+                <div class="h-50"></div>
+            </div>
+            <div class="col-md-12">
+                <ul class="timeline">
+                    <li class="timeline-event" data-aos="fade-up">
+                        <label class="timeline-event-icon"></label>
+                        <div class="timeline-event-copy">
+                            <p class="timeline-event-thumbnail">October 2020  -  Present</p>
+                            <h3>DOODLEBLUE INNOVATIONS</h3>
+                            <h4>Software Engineer</h4>
+                            <p><strong>JULO</strong>
+                                <br>I work as a full-time web developer for an Indonesian Financial monolith JULO. Immensely involved in building various RESTful APIs as per the enhancement needs, third-party API integrations, and front-end changes of the product's CRM, majorly worked on features to help the detection of fraudulent financial practices.
+                                Acquired vast experience in best practices on querying, structuring a big scale project, and drafting database schemas from scratch.
+                                I also gained experience implementing asynchronous tasks with Celery and message queues. I got familiar with various SDLC tools like Jira, Git, Confluence.
+                                Also well exposed to using various monitoring tools like Sentry for errors, Jenkins for deployment monitoring, Datadog for API requests.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-event" data-aos="fade-up" data-aos-delay=".2">
+                        <label class="timeline-event-icon"></label>
+                        <div class="timeline-event-copy">
+                            <p class="timeline-event-thumbnail">Aprril 2020  -  October 2020</p>
+                            <h3>NEWSLY</h3>
+                            <h4>Product Design and Development</h4>
+                            <p>Newsly is a medium-sized social platform for sharing news and articles. I worked on building RESTful APIs for the mobile app version of the project while also working on designing the user interface for the android version. 
+                                I closely collaborated with the product managers on making incremental design decisions based on customer feedback. I worked with android developers to work on cloud messaging services like Firebase Cloud Messaging for sending push notifications. 
+                                Got familiar with integrating social authentication methods using Google's OAuth and Facebook SocialAuth. Furthermore, I self-learned web scraping modules like Scrapy and BeautifulSoup while implementing cloud services and proxies. 
+                                Also, hosted the product on AWS EC2 instances during the development cycle. Moreover worked on content planning and wireframe design for the web version of the product, currently hosted over <a href="http://newsly.live/">newsly.live</a></p>
+                        </div>
+                    </li>
+                    <li class="timeline-event" data-aos="fade-up" data-aos-delay=".4">
+                        <label class="timeline-event-icon"></label>
+                        <div class="timeline-event-copy">
+                            <p class="timeline-event-thumbnail">June 2019 -  August 2019</p>
+                            <h3>ASHOK LEYLAND (CHENNAI)</h3>
+                            <h4>Project Intern</h4>
+                            <p><strong>ASHOK LEYLAND INFROMATION MANAGEMENT SYSTEM</strong>
+                                <br>Worked on a project for developing a python web application for detection of
+                                counterfeit automobile parts in their industry using computer vision and
+                                implementing them on a basic wamp web server, this is the job that made me more
+                                passionate about programming and building webapps.</p>
+                        </div>
+                    </li>
+                </ul>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class="fox-bg">
+        <img class="scene" data-modifier="30" src="/img/p0.png">
+        <img class="scene" data-modifier="18" src="/img/p1.png">
+        <img class="scene" data-modifier="12" src="/img/p2.png">
+        <img class="scene" data-modifier="8" src="/img/p3.png">
+        <img class="scene" data-modifier="6" src="/img/p4.png">
+        <img class="scene" data-modifier="0" src="/img/p6.png">
+    </div>
+    <!-- ./experience -->
+    
+    <!-- projects -->
+    <div class="section" id="projects">
+        <div class="container">
+            <div class="col-md-12">
+                <h4>03</h4>
+                <h1 class="size-50">My <br /> Portfolio</h1> 
+            </div>
+            <!-- main container -->
+            <div class="main-container portfolio-inner clearfix">
+                <!-- portfolio div -->
+                <div class="portfolio-div">
+                    <div class="portfolio">
+                        <!-- portfolio_filter -->
+                        <div class="categories-grid wow fadeInLeft">
+                            <nav class="categories">
+                                <ul class="portfolio_filter">
+                                    <li><a href="" class="active" data-filter="*">All</a></li>
+                                    <li><a href="" data-filter=".photography">Photography</a></li>
+                                    <li><a href="" data-filter=".logo">Logo</a></li>
+                                    <li><a href="" data-filter=".graphics">Graphics</a></li>
+                                    <li><a href="" data-filter=".ads">Advertising</a></li>
+                                    <li><a href="" data-filter=".fashion">Fashion</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- portfolio_filter -->
+                        
+                        <!-- portfolio_container -->
+                        <div class="no-padding portfolio_container clearfix" data-aos="fade-up">
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6  fashion logo">
+                                <a id="demo01" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/1.png" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>NEWSLY</span> <em>Fashion / Logo</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+                            
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 ads graphics">
+                                <a id="demo02" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/03.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Floating mockups</span> <em>Ads / Graphics</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+                            
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 photography">
+                                <a id="demo03" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/02.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Photorealistic smartwatch</span> <em>Photography</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+                            
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 fashion ads">
+                                <a id="demo04" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/04.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Held by hands</span> <em>Fashion / Ads</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+                            
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 graphics ads">
+                                <a id="demo05" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/05.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Mobile devices</span> <em>Graphics / Ads</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+                            
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 photography">
+                                <a id="demo06" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/010.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Photorealistic smartwatch</span> <em>Photography</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+                            
+                            <!-- single work -->
+                            <!-- <div class="col-md-4 col-sm-6 graphics ads">
+                                <a id="demo07" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/06.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Mobile devices</span> <em>Graphics / Ads</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div> -->
+                            <!-- end single work -->
+                            
+                            <!-- single work -->
+                            <!-- <div class="col-md-4 col-sm-6 graphics ads">
+                                <a id="demo08" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/07.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Mobile devices</span> <em>Graphics / Ads</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div> -->
+                            <!-- end single work -->
+                            
+                            <!-- single work -->
+                            <!-- <div class="col-md-4 col-sm-6 graphics ads">
+                                <a id="demo09" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/08.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Mobile devices</span> <em>Graphics / Ads</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div> -->
+                            <!-- end single work -->
+                        </div>
+                        <!-- end portfolio_container -->
+                    </div>
+                    <!-- portfolio -->
+                </div>
+                <!-- end portfolio div -->
+            </div>
+            <!-- end main container -->
+        </div>
+    </div>
+    <!-- ./projects -->
+
+    <!-- contact -->
+    <div class="section" id="contact">
+        <div class="container">
+            <div class="col-md-12">
+                <h4>04</h4>
+                <h1 class="size-50">Contact  Me</h1>
+                <div class="h-25"></div>
+            </div>
+            <div class="col-sm-3" data-aos="fade-up">
+                <h3>Contact Addres</h3>
+                <p>C2 13A/11, 4th Block, <br> G.A Road, Shanthi Colony,<br> Old Washermenpet, <BR> Chennai-600021</p>
+            </div>  
+            <div class="col-sm-3" data-aos="fade-up">
+                <h3>Email</h3>
+                <p>krish5699@live.com
+            </div>
+            <div class="col-sm-3" data-aos="fade-up">
+                <h3> Mobile Numberr</h3>
+                <p>+91 9566273674</p>
+            </div>
+            
+            <div class="col-sm-3" data-aos="fade-up">
+                    <h3>Social Network</h3>
+                    <ul class="social">
+                        <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                        <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                        <li><a href="#"><i class="ion-social-dribbble"></i></a></li>
+                    </ul>
+            <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ./contact -->
+
+    <!--DEMO01-->
+    <div id="animatedModal" class="popup-modal">
+        <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID -->
+        <div id="btn-close-modal" class="close-animatedModal close-popup-modal"> <i class="ion-close-round"></i> </div>
+        <div class="clearfix"></div>
+        <div class="modal-content">
+            <div class="container">
+                <div class="portfolio-padding">
+                    <div class="col-md-8 col-md-offset-2">
+                        <!-- <h2>NEWSLY<br /></h2> -->
+                        <div class="h-25"></div>
+                        <img width="20%" src="img/portfolio/newsly-logo.png" alt="" class="img-responsive" />
+                        <p><strong>Newsly</strong> is a social networking site tailor-made for the Indian population that allows users to share and consume news and articles, as well as participate in polls and quizzes based on general knowledge and current affairs from around the world.</p>
+                        <br />
+                        <br /> <img src="img/portfolio/p01.png" alt="" class="img-responsive" />
+                        <br />
+                        <br />
+                        <h4>
+                            Overview
+                        </h4>
+                        <p>
+                            The objective of the project is to redesign the product’s web interface by addressing feedback from the existing consumers to better enhance user engagement.
+                        </p>
+                        <br>
+                        <h4>Target Audience</h4> <p>Teenagers and Adults</p>
+                        <br/>
+                        <h3><strong>THE DESIGN PROCESS</strong></h3>
+                        <br>
+                        <h4>Analyzing the competitors</h4> 
+                        <p>
+                            After experiencing using various competitors' products in the country, the existing flow of newsly lacked in smoother transitions and simpler design for an average consumer
+                        </p>
+                        <br>
+                        <h4>Stakeholder interview</h4> 
+                        <p>
+                            I had a casual chat with the Stakeholders and Product Owners. I quizzed them on short and long-term objectives, vision, and mission, among other things they had planned for the product. My objective was to obtain as much knowledge as possible from them so that I do not become disoriented in the process.
+                            <br> <br>
+                            I restrained from talking about technical features, content, search engine optimizations, functionality or anything else that deals with a solution.
+                            Rather, the questions we dwelled upon were as follows:
+                            <ul>
+                                <li>What are the brand values ?</li>
+                                <li>What sets your company apart ?</li>
+                                <li>What are the challenges lying ahead ?</li>
+                                <li>What does success look like ?</li>
+                            </ul>
+
+                        </p>
+                        <br/>
+                        <h4>Analytics Review</h4> 
+                        <p>I enlisted the assistance of a coworker who works as an SEO Analyst. He sent me online and mobile usage data, as well as crucial information like commonly viewed sites, visitor demographics, bounce rates, and more.</p>
+                        
+                        <br/>
+                        <h4>User Interview</h4>
+                        <p>
+                            I had a chance to chat with a few early users of the product on how their experience was while using it. Following were the crucial questions I discussed with the users.
+                            <ul>
+                                <li>How much time do you spend on performing a task in the product?</li>
+                                <li> How do you currently go about a given problem/task?</li>
+                                <li> What other similar products have you tried out?</li>
+                                <li> What do you like/dislike about the other product?</li>
+                                <li> Why would someone use this product?</li>
+                            </ul>
+                        </p>
+                        
+                        <br/>
+                        <h4>Identified Problems</h4>
+                        <ol>
+                            <li>Outdated design and Low-quality icons in existing design</li>
+                            <li>Poor rule of thumb.</li>
+                            <li>Crowded navigation section.</li>
+                            <li>Lack of content responsiveness across devices.</li>
+                        </ol>
+                        
+                        <br/>
+                        <h4>Final Scope</h4>
+                        <ol>
+                            <li>Better alignment</li>
+                            <li>Grouping by dropdowns.</li>
+                            <li>User Engagement.</li>
+                            <li>Establish space for displaying ads</li>
+                            <li>Update icons</li>
+                        </ol>
+                        <h4>Wireframing</h4>
+                        <br>
+                        <h4>Final Design</h4>
+                        <br>
+                        <br/> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <!--  plugins  -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.min.js"></script>
+    <script src="https://cdn.rawgit.com/greggman/twgl.js/master/dist/4.x/twgl-full.min.js"></script>
+    <script src="https://webglfundamentals.org/webgl/resources/m3.js"></script>
+    <script src="https://s.electerious.com/basicScroll/dist/basicScroll.min.js"></script>
+
+
+    <!--  main script  -->
+    <script src="js/custom.js"></script>
+    <script src="js/about.picture.js"></script>
+    <script src="js/title.switching.text.js"></script>
+    <script src="js/fox.js"></script>
+
+</body>
+
+</html>
