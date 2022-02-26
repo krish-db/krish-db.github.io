@@ -13,7 +13,6 @@
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/aos.css" rel="stylesheet">
     <!-- main style -->
-    <link href="css/style.scss" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -118,18 +117,11 @@
     <div class="section" id="home" data-stellar-background-ratio="0.5">
         <div class="container">
             <div id='title_space'>
-                <div id="magic"></div>
+                <div id="magic">
+                    
+                </div>
                 <div class="title_text">
-                    <h1>professional web developer &bull; aspiring digital product designer<br>
-                        <!-- loves <br>
-                              <span class="words-wrapper">
-                                <b class="is-visible">coffee</b>
-                                <b>programming</b>
-                                <b>astrophysics</b>
-                                <b>blockchain</b>
-                                <b>butter chicken</b>
-                              </span> -->
-                     <h1>
+                    <h1>professional web developer &bull; aspiring digital product designer<br></h1>
                   </div>
                 
             </div>
@@ -266,10 +258,10 @@
                         <div class="no-padding portfolio_container clearfix" data-aos="fade-up">
                             <!-- single work -->
                             <div class="col-md-4 col-sm-6  fashion logo">
-                                <a id="demo01" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/1.png" alt="image" class="img-responsive" />
+                                <a id="demo01" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/newsly/1.png" alt="image" class="img-responsive" />
                                     <div class="portfolio_item_hover">
                                         <div class="portfolio-border clearfix">
-                                            <div class="item_info"> <span>NEWSLY</span> <em>Fashion / Logo</em> </div>
+                                            <div class="item_info"><em>View Case Study</em> </div>
                                         </div>
                                     </div>
                                 </a>
@@ -421,20 +413,67 @@
     <!--DEMO01-->
     <div id="animatedModal" class="popup-modal">
         <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID -->
-        <div id="btn-close-modal" class="close-animatedModal close-popup-modal"> <i class="ion-close-round"></i> </div>
+        <div id="btn-close-modal" class="close-animatedModal close-popup-modal"> <h2 id='close-btn' class="ion-close-round"></h2> </div>
         <div class="clearfix"></div>
         <div class="modal-content">
             <div class="container">
                 <div class="portfolio-padding">
                     <div class="col-md-8 col-md-offset-2">
                         <!-- <h2>NEWSLY<br /></h2> -->
-                        <div class="h-25"></div>
-                        <img width="20%" src="img/portfolio/newsly-logo.png" alt="" class="img-responsive" />
+                        <!-- <div class="h-25"></div> -->
+                        <img width="20%" src="img/portfolio/newsly/newsly-logo.png" alt="" class="img-responsive" />
+                        
+                        
+                        
                         <p><strong>Newsly</strong> is a social networking site tailor-made for the Indian population that allows users to share and consume news and articles, as well as participate in polls and quizzes based on general knowledge and current affairs from around the world.</p>
-                        <br />
-                        <br /> <img src="img/portfolio/p01.png" alt="" class="img-responsive" />
-                        <br />
-                        <br />
+                        <br /> 
+
+                        <div class="container" style="position: relative; left: 40px;">
+                            <div class="col-sm-4">
+                                <img style="display: inline-block; width: 100%; margin-left: auto; margin-right: auto;" src="img/portfolio/newsly/new_amp_home.png" alt="" />
+                            </div>
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <img style="display: inline-block; width: 100%; margin-left: auto; margin-right: auto;" src="img/portfolio/newsly/new_amp_profile.png" alt="" />
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <hr style="border-top: rgb(128, 128, 128);">
+                        
+                        <br>
+                    
+                        <div class="desktop-images">
+                            <div id="desktop-cl" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#desktop-cl" data-slide-to="0" class="active"></li>
+                                    <li data-target="#desktop-cl" data-slide-to="1"></li>
+                                    <!-- <li data-target="#desktop-cl" data-slide-to="2"></li> -->
+                                </ol>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                    <img width="100%" src="/img/portfolio/newsly/home_mac.png" alt="Los Angeles">
+                                    </div>
+                                    <div class="item">
+                                    <img width="100%" src="/img/portfolio/newsly/profile_mac.png" alt="Los Angeles">
+                                    </div>
+                                </div>
+                            
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#desktop-cl" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#desktop-cl" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                        </div>
+                      </div>
+
+                        <br>
                         <h4>
                             Overview
                         </h4>
@@ -500,12 +539,10 @@
                             <li>Establish space for displaying ads</li>
                             <li>Update icons</li>
                         </ol>
-                        <h4>Wireframing</h4>
+                        <h4>Wireframes Used</h4>
                         <br>
-                        <h4>Final Design</h4>
-                        <br>
-                        <br/> </div>
-                </div>
+                        <img src="/img/portfolio/newsly/all_wireframes.png" width='1000'>
+                    </div>
             </div>
         </div>
     </div>
@@ -528,9 +565,7 @@
     <!--  main script  -->
     <script src="js/custom.js"></script>
     <script src="js/about.picture.js"></script>
-    <script src="js/title.switching.text.js"></script>
     <script src="js/fox.js"></script>
-
 </body>
 
 </html>

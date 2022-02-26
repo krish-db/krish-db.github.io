@@ -320,11 +320,11 @@ a.active {
 #title_space .line {
     width: 100vw;
   }
-#title_space .left, .right {
+/* #title_space .left, .right {
     width: 50vw;
     overflow: hidden;
     display: inline-block;
-  }
+  } */
 #title_space .left {
     color:rgb(255, 255, 255);
     /* transform: skew(0deg, 8deg); */
@@ -356,8 +356,7 @@ a.active {
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 #magic {
-
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 100vh;
   display: block;
@@ -823,15 +822,15 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(161,176,172,1) 3%, rg
     display: inline-block;
     background-color: #8b8b8b;
     padding: 5px 20px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     margin-top: 10px;
     -webkit-transform: translateY(100px);
     transform: translateY(100px);
     -webkit-transition: all .3s ease-in-out .3s;
     transition: all .3s ease-in-out .3s;
     opacity: 0;
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-size: 16px;
+    letter-spacing: 1px;
 }
 
 .portfolio_item:hover .portfolio_item_hover {
@@ -878,6 +877,7 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(161,176,172,1) 3%, rg
     padding-left: 5px;
     margin-right: auto;
     margin-left: auto;
+    width: 90%;
 }
 
 .portfolio-inner {
@@ -918,13 +918,34 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(161,176,172,1) 3%, rg
     right: 14px;
 }
 
+#close-btn{
+    margin: 15px;
+}
+
 .animatedModal-on .close-popup-modal {
     opacity: 1;
+    color: white;
 }
 
 #animatedModal p{
-    font-size: 18px;
+    font-size: 25px;
 }
+
+#animatedModal li{
+    font-size: 20px;
+}
+
+#animatedModal h4{
+    font-size: 28px;
+}
+
+#animatedModal .zoomable-images .left{
+    left: -25px;
+}
+
+#animatedModal .zoomable-images .right{
+    right: -25px;
+} */
 
 .modal-content h2 {
     font-size: 40px;
